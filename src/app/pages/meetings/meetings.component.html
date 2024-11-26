@@ -15,33 +15,16 @@
 </div>
 <div class="meeting-list row">
   <ng-container *ngIf="meetingListCopy.length; else noMeeting">
-    <div
-      class="meeting-card"
-      *ngFor="let meeting of meetingListCopy; trackBy: trackByMeetingFn"
+    <app-meeting-card
+      *ngFor="let meeting of meetingListCopy"
+      [username]="meeting.username"
+      [agenda]="meeting.agenda"
+      [date]="meeting.date"
+      [fromTime]="meeting.fromTime"
+      [toTime]="meeting.toTime"
+      (deleteMeeting)="deleteMeet(meeting.id)"
     >
-      <table>
-        <tr>
-          <td>Username :</td>
-          <td>{{ meeting.username }}</td>
-        </tr>
-        <tr>
-          <td>Agenda :</td>
-          <td>{{ meeting.agenda }}</td>
-        </tr>
-        <tr>
-          <td>Date :</td>
-          <td>{{ meeting.date }}</td>
-        </tr>
-      </table>
-      <div class="row align-center jc-between div-delete">
-        <div class="col">{{ meeting.fromTime }} - {{ meeting.toTime }}</div>
-        <div class="col">
-          <button mat-raised-button color="warn" (click)="deleteMeet(meeting)">
-            Delete
-          </button>
-        </div>
-      </div>
-    </div>
+    </app-meeting-card>
   </ng-container>
   <ng-template #noMeeting>
     <span>No Meetings found</span>

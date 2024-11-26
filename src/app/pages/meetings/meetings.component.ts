@@ -6,16 +6,8 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatIconModule } from "@angular/material/icon";
 import { MatInputModule } from "@angular/material/input";
 import { MatSelectModule } from "@angular/material/select";
-
-interface Meeting {
-  id: string;
-  username: string;
-  agenda: string;
-  meetingRoom: string;
-  date: string;
-  fromTime: string;
-  toTime: string;
-}
+import { MeetingCardComponent } from "src/app/components/meeting-card/meeting-card.component";
+import { Meeting } from "src/app/model/model";
 
 @Component({
   selector: "app-meetings",
@@ -31,6 +23,7 @@ interface Meeting {
     MatButtonModule,
     MatSelectModule,
     CommonModule,
+    MeetingCardComponent,
   ],
 })
 export class MeetingsComponent implements OnInit {
@@ -151,23 +144,22 @@ export class MeetingsComponent implements OnInit {
     }
   }
 
-  deleteMeet(meeting: Meeting) {
-    if (confirm("Are you sure to delete this meeting?")) {
-      this.meetingListCopy = this.meetingListCopy.filter(
-        (meet: Meeting) => meeting.id !== meet.id
-      );
-
-      this.meetingList = this.meetingList.filter(
-        (meet: Meeting) => meeting.id !== meet.id
-      );
-    }
-  }
-
   trackByRoomFn(index: number, room: string) {
     return index;
   }
 
   trackByMeetingFn(index: number, meeting: Meeting) {
     return meeting.id;
+  }
+  deleteMeet(meetingId: string) {
+    if (confirm("Are you sure to delete this meeting?")) {
+      this.meetingListCopy = this.meetingListCopy.filter(
+        (meet: Meeting) => meetingId !== meet.id
+      );
+
+      this.meetingList = this.meetingList.filter(
+        (meet: Meeting) => meetingId !== meet.id
+      );
+    }
   }
 }

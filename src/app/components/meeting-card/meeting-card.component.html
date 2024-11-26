@@ -1,1 +1,24 @@
-<p>meeting-card works!</p>
+<div class="meeting-card">
+  <table>
+    <tr>
+      <td>Username :</td>
+      <td>{{ username }}</td>
+    </tr>
+    <tr>
+      <td>Agenda :</td>
+      <td>{{ agenda }}</td>
+    </tr>
+    <tr>
+      <td>Date :</td>
+      <td>{{ date }}</td>
+    </tr>
+  </table>
+  <div class="row align-center jc-between div-delete">
+    <div class="col">{{ fromTime }} - {{ toTime }}</div>
+    <div class="col">
+      <button mat-raised-button color="warn" (click)="deleteMeet(id)">
+        Delete
+      </button>
+    </div>
+  </div>
+</div>
