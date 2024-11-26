@@ -33,6 +33,7 @@
           <input
             matInput
             [matDatepicker]="datepicker"
+            [matDatepickerFilter]="weekendFilter"
             formControlName="date"
             [min]="defaultDate"
           />

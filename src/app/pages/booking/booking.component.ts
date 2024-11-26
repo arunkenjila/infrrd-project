@@ -107,6 +107,11 @@ export class BookingComponent implements OnInit {
     let toHour = Number(
       this.bookingFormGroup.controls["timeTo"].value.split(":")[0]
     );
+    if (fromHour < 9 || toHour < 9 || fromHour > 18 || toHour > 18) {
+      this.toTimeErrorMessage =
+        "Meeting timings should be between 09:00 to 18:00";
+      return false;
+    }
     if (toHour - fromHour < 1 && toMin - fromMin < 30) {
       this.toTimeErrorMessage =
         "Minimum duration of the meeting should be 30 minutes";
@@ -119,5 +124,10 @@ export class BookingComponent implements OnInit {
   gotoHome() {
     this.router.navigateByUrl("home");
     this.bookingService.changeRoute("home");
+  }
+
+  weekendFilter(date: Date): boolean {
+    const dayNumber = date?.getDay();
+    return dayNumber !== 0 && dayNumber !== 6;
   }
 }
