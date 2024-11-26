@@ -15,6 +15,7 @@ import { CommonModule } from "@angular/common";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatNativeDateModule } from "@angular/material/core";
 import { Router } from "@angular/router";
+import { BookingService } from "src/app/services/booking.service";
 
 @Component({
   selector: "app-booking",
@@ -55,7 +56,11 @@ export class BookingComponent implements OnInit {
   fromTime: string = "";
   toTime: string = "";
 
-  constructor(private formBuilder: FormBuilder, private router: Router) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private bookingService: BookingService
+  ) {
     this.getDefaultTime();
     this.bookingFormGroup = this.formBuilder.group({
       username: ["sdsd", Validators.required],
@@ -77,7 +82,6 @@ export class BookingComponent implements OnInit {
   }
 
   onFormSubmit() {
-    console.log(this.bookingFormGroup.value);
     if (this.bookingFormGroup.valid && this.isTimeValid()) {
       this.isBooked = true;
     } else {
@@ -114,5 +118,6 @@ export class BookingComponent implements OnInit {
 
   gotoHome() {
     this.router.navigateByUrl("home");
+    this.bookingService.changeRoute("home");
   }
 }

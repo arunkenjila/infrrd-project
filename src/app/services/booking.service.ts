@@ -5,7 +5,7 @@ import { BehaviorSubject } from "rxjs";
   providedIn: "root",
 })
 export class BookingService {
-  routeSub$ = new BehaviorSubject<string>("meetings");
+  routeSub$ = new BehaviorSubject<string>("status");
   routeObs = this.routeSub$.asObservable();
 
   constructor() {}

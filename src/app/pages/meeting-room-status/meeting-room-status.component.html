@@ -1,0 +1,22 @@
+<div class="status">
+  <div class="col">
+    <div class="status-top row align-center">
+      <span>Select a time slot</span>
+      <input type="time" [(ngModel)]="fromTime" />
+      <span> To </span>
+      <input type="time" [(ngModel)]="toTime" />
+      <button mat-raised-button color="primary" (click)="showStatus()">
+        Status
+      </button>
+    </div>
+    <span class="error" *ngIf="errorMessage">{{ errorMessage }}</span>
+  </div>
+  <hr />
+  <div class="room-list">
+    <h4>Room Status</h4>
+    <tr *ngFor="let roomStatus of roomStatusList; trackBy: trackByFn">
+      <td>{{ roomStatus.room }}</td>
+      <td>: {{ roomStatus.status }}</td>
+    </tr>
+  </div>
+</div>

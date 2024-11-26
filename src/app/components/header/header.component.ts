@@ -29,11 +29,24 @@ export class HeaderComponent implements OnInit {
       route: "meetings",
       isActive: false,
     },
+    {
+      label: "Room Status",
+      route: "status",
+      isActive: false,
+    },
   ];
 
   constructor(private bookingService: BookingService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.bookingService.routeObs.subscribe((currentRoute: string) => {
+      for (let i = 0; i < this.menu.length; i++) {
+        if (currentRoute === this.menu[i].route) {
+          this.menu[i].isActive = true;
+        } else this.menu[i].isActive = false;
+      }
+    });
+  }
 
   trackByFn(index: number, item: Menu) {
     return index;

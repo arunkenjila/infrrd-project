@@ -1,8 +1,5 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { HomeComponent } from "./pages/home/home.component";
-import { BookingComponent } from "./pages/booking/booking.component";
-import { MeetingsComponent } from "./pages/meetings/meetings.component";
 
 const routes: Routes = [
   {
@@ -12,15 +9,29 @@ const routes: Routes = [
   },
   {
     path: "home",
-    component: HomeComponent,
+    loadComponent: () =>
+      import("./pages/home/home.component").then((x) => x.HomeComponent),
   },
   {
     path: "book",
-    component: BookingComponent,
+    loadComponent: () =>
+      import("./pages/booking/booking.component").then(
+        (x) => x.BookingComponent
+      ),
   },
   {
     path: "meetings",
-    component: MeetingsComponent,
+    loadComponent: () =>
+      import("./pages/meetings/meetings.component").then(
+        (x) => x.MeetingsComponent
+      ),
+  },
+  {
+    path: "status",
+    loadComponent: () =>
+      import("./pages/meeting-room-status/meeting-room-status.component").then(
+        (x) => x.MeetingRoomStatusComponent
+      ),
   },
 ];
 
