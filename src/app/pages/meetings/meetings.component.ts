@@ -162,4 +162,12 @@ export class MeetingsComponent implements OnInit {
       );
     }
   }
+
+  trackByRoomFn(index: number, room: string) {
+    return index;
+  }
+
+  trackByMeetingFn(index: number, meeting: Meeting) {
+    return meeting.id;
+  }
 }

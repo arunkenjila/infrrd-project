@@ -5,15 +5,20 @@
       [(ngModel)]="selectedRoom"
       (selectionChange)="onRoomSelectionChange(selectedRoom)"
     >
-      <mat-option *ngFor="let group of meetingRooms" [value]="group">{{
-        group
-      }}</mat-option>
+      <mat-option
+        *ngFor="let group of meetingRooms; trackBy: trackByRoomFn"
+        [value]="group"
+        >{{ group }}</mat-option
+      >
     </mat-select>
   </mat-form-field>
 </div>
 <div class="meeting-list row">
   <ng-container *ngIf="meetingListCopy.length; else noMeeting">
-    <div class="meeting-card" *ngFor="let meeting of meetingListCopy">
+    <div
+      class="meeting-card"
+      *ngFor="let meeting of meetingListCopy; trackBy: trackByMeetingFn"
+    >
       <table>
         <tr>
           <td>Username :</td>
