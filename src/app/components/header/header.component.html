@@ -1,0 +1,16 @@
+<div class="header row align-center jc-between">
+  <div class="header-left">
+    <span>Meet Pro</span>
+  </div>
+  <div class="header-right row jc-between">
+    <div
+      class="menu row jc-center"
+      *ngFor="let item of menu; trackBy: trackByFn"
+      [ngClass]="{ 'menu-active': item.isActive }"
+      (click)="onClickMenu(item)"
+    >
+      {{ item.label }}
+    </div>
+  </div>
+</div>
+<div class="bottom-shadow"></div>
