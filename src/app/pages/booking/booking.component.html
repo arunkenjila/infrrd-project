@@ -51,7 +51,9 @@
           <input type="time" formControlName="timeFrom" />
         </div>
         <div>
-          <mat-error *ngIf="fromTimeError">From time is required</mat-error>
+          <mat-error class="from-time-error" *ngIf="fromTimeError"
+            >From time is required</mat-error
+          >
         </div>
       </div>
       <div class="col mb-20">
@@ -74,7 +76,7 @@
         </mat-form-field>
       </div>
       <div class="col">
-        <button mat-raised-button color="primary">BOOK</button>
+        <button type="submit" mat-raised-button color="primary">BOOK</button>
       </div>
     </form>
   </div>

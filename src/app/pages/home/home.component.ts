@@ -10,10 +10,8 @@ import { BookingService } from "src/app/services/booking.service";
   standalone: true,
   imports: [MatButtonModule],
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
   constructor(private router: Router, private bookingService: BookingService) {}
-
-  ngOnInit(): void {}
 
   gotoBooking() {
     this.router.navigateByUrl("book");

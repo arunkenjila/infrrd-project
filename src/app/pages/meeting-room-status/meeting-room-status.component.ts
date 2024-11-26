@@ -222,9 +222,7 @@ export class MeetingRoomStatusComponent implements OnInit {
   showStatus() {
     if (!this.fromTime) {
       this.errorMessage = "Please select the From time";
-    }
-
-    if (!this.toTime) {
+    } else if (!this.toTime) {
       this.errorMessage = "Please select the To time";
     }
     if (this.toTime && this.fromTime) {

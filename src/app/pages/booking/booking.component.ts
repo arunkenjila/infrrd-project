@@ -35,7 +35,7 @@ import { BookingService } from "src/app/services/booking.service";
     MatNativeDateModule,
   ],
 })
-export class BookingComponent implements OnInit {
+export class BookingComponent {
   bookingFormGroup: FormGroup;
   meetingRooms: string[] = [
     "Room 1",
@@ -63,22 +63,19 @@ export class BookingComponent implements OnInit {
   ) {
     this.getDefaultTime();
     this.bookingFormGroup = this.formBuilder.group({
-      username: ["sdsd", Validators.required],
+      username: ["", Validators.required],
       meetingRoom: ["Room 1", Validators.required],
       date: [this.defaultDate, Validators.required],
       timeFrom: [this.fromTime, Validators.required],
       timeTo: [this.toTime, Validators.required],
-      agenda: ["asa", Validators.required],
+      agenda: ["", Validators.required],
     });
   }
-
-  ngOnInit(): void {}
 
   getDefaultTime(): void {
     let time = String(new Date()).split(" ")[4];
     time = time.substring(0, 5);
     this.fromTime = time;
-    this.toTime = "15:42";
   }
 
   onFormSubmit() {
