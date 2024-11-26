@@ -91,5 +91,18 @@ body {
 }
 
 .m-5 {
-  margin: 5 !important;
+  margin: 5px !important;
+}
+
+.mb-20 {
+  margin-bottom: 20px !important;
+}
+
+.h80 {
+  height: 80vh;
+}
+
+// material custom styles
+.mat-form-field-appearance-outline .mat-form-field-wrapper {
+  margin: 0 !important;
 }

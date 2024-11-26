@@ -1,1 +1,88 @@
-<p>booking works!</p>
+<div class="d-flex col align-center jc-center">
+  <div
+    *ngIf="!isBooked; else booked"
+    class="book d-flex col align-center jc-center"
+  >
+    <div class="book-header">Book a meeting</div>
+    <form
+      class="book-form"
+      [formGroup]="bookingFormGroup"
+      (ngSubmit)="onFormSubmit()"
+    >
+      <div class="col">
+        <mat-form-field appearance="outline">
+          <mat-label>Username</mat-label>
+          <input matInput placeholder="username" formControlName="username" />
+          <mat-icon matSuffix>user</mat-icon>
+          <mat-error>Username is required</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <mat-form-field appearance="outline">
+          <mat-select formControlName="meetingRoom" value="Room 1">
+            <mat-option *ngFor="let group of meetingRooms" [value]="group">{{
+              group
+            }}</mat-option>
+          </mat-select>
+          <mat-error>Meeting room is required</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <mat-form-field appearance="outline">
+          <mat-label>Choose a date</mat-label>
+          <input
+            matInput
+            [matDatepicker]="datepicker"
+            formControlName="date"
+            [min]="defaultDate"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="datepicker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #datepicker> </mat-datepicker>
+          <mat-error>Date is required</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col mb-20">
+        <div class="book-time row align-center jc-between">
+          <mat-label>From time</mat-label>
+          <input type="time" formControlName="timeFrom" />
+        </div>
+        <div>
+          <mat-error *ngIf="fromTimeError">From time is required</mat-error>
+        </div>
+      </div>
+      <div class="col mb-20">
+        <div class="book-time row align-center jc-between">
+          <mat-label>To time</mat-label>
+          <input type="time" formControlName="timeTo" />
+        </div>
+        <div>
+          <mat-error *ngIf="toTimeErrorMessage">{{
+            toTimeErrorMessage
+          }}</mat-error>
+        </div>
+      </div>
+      <div class="col">
+        <mat-form-field appearance="outline">
+          <mat-label>Agenda</mat-label>
+          <input matInput placeholder="agenda" formControlName="agenda" />
+          <mat-icon matSuffix>user</mat-icon>
+          <mat-error>Agenda is required</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <button mat-raised-button color="primary">BOOK</button>
+      </div>
+    </form>
+  </div>
+  <ng-template #booked>
+    <div class="book-success h80 col jc-center">
+      <span>You have successfully booked the meeting</span>
+      <button mat-raised-button color="primary" (click)="gotoHome()">
+        Go to home
+      </button>
+    </div>
+  </ng-template>
+</div>
