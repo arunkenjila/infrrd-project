@@ -1,1 +1,44 @@
-<p>meetings works!</p>
+<div class="meeting-top">
+  <span>Select meeting room </span>
+  <mat-form-field appearance="outline">
+    <mat-select
+      [(ngModel)]="selectedRoom"
+      (selectionChange)="onRoomSelectionChange(selectedRoom)"
+    >
+      <mat-option *ngFor="let group of meetingRooms" [value]="group">{{
+        group
+      }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div class="meeting-list row">
+  <ng-container *ngIf="meetingListCopy.length; else noMeeting">
+    <div class="meeting-card" *ngFor="let meeting of meetingListCopy">
+      <table>
+        <tr>
+          <td>Username :</td>
+          <td>{{ meeting.username }}</td>
+        </tr>
+        <tr>
+          <td>Agenda :</td>
+          <td>{{ meeting.agenda }}</td>
+        </tr>
+        <tr>
+          <td>Date :</td>
+          <td>{{ meeting.date }}</td>
+        </tr>
+      </table>
+      <div class="row align-center jc-between div-delete">
+        <div class="col">{{ meeting.fromTime }} - {{ meeting.toTime }}</div>
+        <div class="col">
+          <button mat-raised-button color="warn" (click)="deleteMeet(meeting)">
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <ng-template #noMeeting>
+    <span>No Meetings found</span>
+  </ng-template>
+</div>
